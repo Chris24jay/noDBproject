@@ -23,10 +23,10 @@ let id = 3
 module.export = {
     //Create; post. I want this to add heroes my display box
     eyesUp: (request, response) => {
-        const {text} = request.body
-        avengers.push({id, text})
+        // const {madeUpName} = request.body // 
+        avengers.push({id, madeUpName})
         id++
-        res.status(200).send(avengers)
+        response.status(200).send(avengers)
 
     },
 
@@ -38,12 +38,24 @@ module.export = {
 
     //Update; put. This will edit your team in the display box
     tagOut: (request, response) => {
+        let { madeUpName } = request.body
+        let updateId = request.param.id
+        let avengersID = avengers.findIndex(hero => {
+            hero.id === +updateId
+        })
+        let newAvenger = avengers[avengersID]
 
+        avengers[avengersID] = {
+            id: newAvenger.id, //avengers[avengersID].id this will re assign the id 
+            madeUpName: madeUpName, // will update text with user input
+        }
+        response.status(200).send(avengers)
     },
 
     //Delete; delete. Delete the theme
-    theSnap: (request, response) => {
-
+    theSnap: (request, response) => { 
+        avengers.splice(0,avengers.length)
+        response.status(200).send(avengers)
     },
 
 

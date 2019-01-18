@@ -9,9 +9,9 @@ app.use(bodyParser.json())
 
 axios.post('/api/avengers', heroes.eyesUp)
 
-axios.get('/api/heroRoster', heroes.assemble )
+axios.get('/api/heroRoster', heroes.assemble)
 
-axios.put('/api/avengers/:id', heroes.tagOut )
+axios.put('/api/avengers/:id', heroes.tagOut)
 
 axios.delete('/api/avengers', heroes.theSnap)
 
