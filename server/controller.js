@@ -1,58 +1,93 @@
 heroRoster = [
     {
-        id: 0,
+        // id: 0,
         madeUpName: "Iron Man",
         realName: "Tony Stark"
     },
     {
-        id: 1,
+        // id: 1,
         madeUpName: "Captain America",
         realName: "Steve Rogers"
     },
     {
-        id: 2,
+        // id: 2,
         madeUpName: "Spider-Man",
         realName: "Peter Parker"
+    },
+    {
+        // id: 3,
+        madeUpName: "Wolverine",
+        realName: "Logan Howelette"
+    },
+    {
+        // id: 4,
+        madeUpName: "Starlord",
+        realName: "Peter Quill"
+    },
+    {
+        // id: 5,
+        madeUpName: "Dr. Strange",
+        realName: "Dr. Stephen Strange"
+    },
+    {
+        // id: 6,
+        madeUpName: "Mr. Fantastic",
+        realName: "Reed Richards"
+    }, 
+    {
+        // id: 7,
+        madeUpName: "The Sub-Mariner",
+        realName: "Namor"
+    },
+    {
+        // id: 8,
+        madeUpName: "Captain Marvel",
+        realName: "Carol Danvers"
     }
-
+    
 ]
 
 let avengers = []
-let id = 3
+let id = 0
 
-module.export = {
+module.exports = {
     //Create; post. I want this to add heroes my display box
     eyesUp: (request, response) => {
-        // const {madeUpName} = request.body // 
+        const {madeUpName} = request.body 
         avengers.push({id, madeUpName})
         id++
         response.status(200).send(avengers)
 
     },
 
-    //Read; get. I want this to just diplay a hero roster
+    //Read; get. I want this to just display a list of marvel heroes for now
     assemble: (request, response) => {
-        console.log(request.body)
+        console.log("hello")
         response.status(200).send(heroRoster)
     },
 
     //Update; put. This will edit your team in the display box
     tagOut: (request, response) => {
         let { madeUpName } = request.body
-        let updateId = request.param.id
-        let avengersID = avengers.findIndex(hero => {
-            hero.id === +updateId
+        let updateId = request.params.id
+        let heroIndex = avengers.findIndex(hero => {
+            return hero.id === parseInt(updateId)            
         })
-        let newAvenger = avengers[avengersID]
+        console.log(heroIndex)
+        let newAvenger = avengers[heroIndex]
 
-        avengers[avengersID] = {
-            id: newAvenger.id, //avengers[avengersID].id this will re assign the id 
-            madeUpName: madeUpName, // will update text with user input
+        try {
+            avengers[heroIndex] = {
+                id: newAvenger.id, 
+                madeUpName: madeUpName, // will update text with user input
+            }
+            response.status(200).send(avengers)
+        } catch {
+            response.status(404).send()
         }
-        response.status(200).send(avengers)
     },
 
-    //Delete; delete. Delete the theme
+    //Delete; delete. Delete the team
     theSnap: (request, response) => { 
         avengers.splice(0,avengers.length)
         response.status(200).send(avengers)
