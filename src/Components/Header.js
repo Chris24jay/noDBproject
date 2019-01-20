@@ -8,7 +8,7 @@ class Header extends Component {
                     Welcome to HQ
                 </h1>
                 <h2>
-                    Prepare your team!
+                    Assemble your team!
                 </h2>
             </div>
         )
