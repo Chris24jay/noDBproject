@@ -1,46 +1,46 @@
 heroRoster = [
     {
-        // id: 0,
+        id: 0,
         madeUpName: "Iron Man",
         realName: "Tony Stark"
     },
     {
-        // id: 1,
+        id: 1,
         madeUpName: "Captain America",
         realName: "Steve Rogers"
     },
     {
-        // id: 2,
+        id: 2,
         madeUpName: "Spider-Man",
         realName: "Peter Parker"
     },
     {
-        // id: 3,
+        id: 3,
         madeUpName: "Wolverine",
         realName: "Logan Howelette"
     },
     {
-        // id: 4,
+        id: 4,
         madeUpName: "Starlord",
         realName: "Peter Quill"
     },
     {
-        // id: 5,
+        id: 5,
         madeUpName: "Dr. Strange",
         realName: "Dr. Stephen Strange"
     },
     {
-        // id: 6,
+        id: 6,
         madeUpName: "Mr. Fantastic",
         realName: "Reed Richards"
     }, 
     {
-        // id: 7,
+        id: 7,
         madeUpName: "The Sub-Mariner",
         realName: "Namor"
     },
     {
-        // id: 8,
+        id: 8,
         madeUpName: "Captain Marvel",
         realName: "Carol Danvers"
     }
@@ -53,7 +53,7 @@ let id = 0
 module.exports = {
     //Create; post. I want this to add heroes my display box
     eyesUp: (request, response) => {
-        const {madeUpName} = request.body 
+        const madeUpName = request.params.text 
         avengers.push({id, madeUpName})
         id++
         response.status(200).send(avengers)

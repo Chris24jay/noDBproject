@@ -11,7 +11,7 @@ app.get('/api/heroRoster', heroes.assemble)
 
 app.delete('/api/avengers', heroes.theSnap)
 
-app.post('/api/avengers', heroes.eyesUp)
+app.post('/api/avengers/:text', heroes.eyesUp)
 
 app.put('/api/avengers/:id', heroes.tagOut)
 

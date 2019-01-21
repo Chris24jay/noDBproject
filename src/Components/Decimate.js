@@ -13,7 +13,7 @@ class Decimate extends Component {
 
     //method to change buttonText 
     handleButtonChange(){
-        //do I put my axios.delete here?
+
         this.setState({
             buttonText: 'Oh Snap!'
         })

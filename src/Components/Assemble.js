@@ -15,7 +15,6 @@ class Assemble extends Component {
     }
 
     handleGetHeroes(){
-
         axios.get('http://localhost:4000/api/heroRoster')
         .then((response)=> {
             let heroName = response.data.map((val)=> {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 //This should be the input area and the button 
 class HeroInput extends Component {
@@ -17,9 +18,15 @@ class HeroInput extends Component {
         let teamUpdate = this.state.avengers
         let newHero = this.state.inputText
         teamUpdate.push(newHero)
-        this.setState({
-            avenger: teamUpdate
+        axios.post(`http://localhost:4000/api/avengers/${this.state.inputText}`)
+        .then((response)=> {
+            console.log(response.data)
+            this.setState({
+                inputText: '',
+                avengers: response.data
+            })
         })
+        
         console.log(this.state.avengers)
     }
 
@@ -33,13 +40,21 @@ class HeroInput extends Component {
     render(){
         let displayHeroes = this.state.avengers.map((val,ind) => {
             return ( 
-                <h2 key={ ind }>{ val }</h2>
+                <h2 key={ ind }>{ val.madeUpName }</h2>
             )
         })
         return(
             <div>
-                <input onChange={(e)=> this.handleInput(e.target.value)} placeholder="Enter Hero" />
-                <button onClick={(e)=> this.handleUpdateAvengers()} >Suit up!</button>
+                <input 
+                    onChange={(e)=> 
+                        this.handleInput(e.target.value)} 
+                    placeholder="Enter Hero"
+                    value={this.state.inputText}
+                />
+
+                <button onClick={(e)=> this.handleUpdateAvengers()}>
+                     Suit up!
+                </button>
                 {displayHeroes}
             </div>
         )
