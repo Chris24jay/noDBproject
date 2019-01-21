@@ -66,7 +66,7 @@ module.exports = {
 
     //Update; put. This will edit your team in the display box
     tagOut: (request, response) => {
-        let { madeUpName } = request.body
+        let madeUpName  = request.body
         let updateId = request.params.id
         let heroIndex = avengers.findIndex(hero => {
             return hero.id === parseInt(updateId)            

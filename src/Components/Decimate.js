@@ -27,7 +27,7 @@ class Decimate extends Component {
             <div>
                 <button
                  onClick={() =>{this.props.buttonChangeFn();this.handleButtonText()}}
-                // onClick={()=>{this.handleButtonText()}}
+
                 >
                 {this.state.buttonText}
                 </button>

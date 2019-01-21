@@ -13,7 +13,7 @@ app.delete('/api/avengers/', heroes.theSnap)
 
 app.post('/api/avengers/:text', heroes.eyesUp)
 
-app.put('/api/avengers/:id', heroes.tagOut)
+app.put('/api/avengers', heroes.tagOut)
 
 const port = 4000
 app.listen( port, () => {console.log(`Server running at port: ${port}`)})

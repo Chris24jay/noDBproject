@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Decimate from '../Components/Decimate'
+import Heroname from '../Components/Heroname'
+
 import axios from 'axios';
 
 //This should be the input area and the button 
@@ -9,28 +11,29 @@ class HeroInput extends Component {
 
         this.state={
             inputText: '',
-            avengers: []
+            avengers: [], 
+
         }
 
     this.handleUpdateAvengers = this.handleUpdateAvengers.bind(this)
-
     this.handleButtonChange = this.handleButtonChange.bind(this)
+    
+    this.handleEdit = this.handleEdit.bind(this)
     }
 
+    //Post; create
     handleUpdateAvengers(){
         let teamUpdate = this.state.avengers
         let newHero = this.state.inputText
         teamUpdate.push(newHero)
         axios.post(`http://localhost:4000/api/avengers/${this.state.inputText}`)
         .then((response)=> {
-            console.log(response.data)
             this.setState({
                 inputText: '',
-                avengers: response.data
+                avengers: response.data,
+                
             })
         })
-        
-        console.log(this.state.avengers)
     }
 
     handleInput(val){
@@ -39,24 +42,42 @@ class HeroInput extends Component {
         })
     }
 
-        //need to rename this since I moved it from another component
-        handleButtonChange(){
-            axios.delete('http://localhost:4000/api/avengers')
-            .then((response => {
-               console.log(response.data)
-               this.setState({
-                   avengers: response.data
-               }) 
-            }))
-        } 
+    //This is the Delete.
+    handleButtonChange(){
+        axios.delete('http://localhost:4000/api/avengers')
+        .then((response => {
+            console.log(response.data)
+            this.setState({
+                avengers: response.data
+            }) 
+        }))
+    }
+    
+    //Put; update
+    handleEdit(key){
+        let newArr  = this.state.avengers
+        let mode = this.state.mode
+        newArr[key].madeUpName = this.state.heroEdit
+            this.setState({
+                avengers: newArr,
+
+            })      
+        
+    }
+
+    
 
     
     render(){
+        
         let displayHeroes = this.state.avengers.map((val,ind) => {
-            return ( 
-                <h2 key={ ind }>{ val.madeUpName }</h2>
-            )
+            
+            return <Heroname val={val} ind={ind} key={ind}
+            editArray={this.handleEdit}
+            />     
         })
+
+
         return(
             <div>
                 <input 
@@ -71,6 +92,7 @@ class HeroInput extends Component {
                      Suit up!
                 </button>
                 {displayHeroes}
+
                 <Decimate buttonChangeFn={
                     this.handleButtonChange} />
             </div>
