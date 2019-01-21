@@ -7,7 +7,7 @@ class HeroInput extends Component {
 
         this.state={
             inputText: '',
-            avengers: [],
+            avengers: []
         }
 
     this.handleUpdateAvengers = this.handleUpdateAvengers.bind(this)
@@ -31,13 +31,16 @@ class HeroInput extends Component {
 
     
     render(){
+        let displayHeroes = this.state.avengers.map((val,ind) => {
+            return ( 
+                <h2 key={ ind }>{ val }</h2>
+            )
+        })
         return(
             <div>
                 <input onChange={(e)=> this.handleInput(e.target.value)} placeholder="Enter Hero" />
                 <button onClick={(e)=> this.handleUpdateAvengers()} >Suit up!</button>
-                <h1>
-                    {this.state.avengers}
-                </h1>
+                {displayHeroes}
             </div>
         )
     }

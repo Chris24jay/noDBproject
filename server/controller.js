@@ -57,12 +57,10 @@ module.exports = {
         avengers.push({id, madeUpName})
         id++
         response.status(200).send(avengers)
-
     },
 
     //Read; get. I want this to just display a list of marvel heroes for now
     assemble: (request, response) => {
-        console.log("hello")
         response.status(200).send(heroRoster)
     },
 
@@ -73,7 +71,6 @@ module.exports = {
         let heroIndex = avengers.findIndex(hero => {
             return hero.id === parseInt(updateId)            
         })
-        console.log(heroIndex)
         let newAvenger = avengers[heroIndex]
 
         try {

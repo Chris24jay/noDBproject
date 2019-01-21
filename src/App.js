@@ -7,14 +7,28 @@ import HeroInput from './Components/HeroInput'
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super()
+
+    this.state={
+      assembleButton: false,
+    }
+  }
+
+  handleAssembleButton(){
+    this.setState({
+      assembleButton: true,
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Assemble />
         <main>
           <Header /> 
-          <Decimate /> 
           <HeroInput />         
+          <Decimate /> 
         </main>   
       
    
