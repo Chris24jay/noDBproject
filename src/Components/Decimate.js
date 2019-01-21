@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import axios from 'axios'
 
 class Decimate extends Component {
     constructor(){
@@ -7,23 +8,27 @@ class Decimate extends Component {
         this.state = {
             buttonText: 'Fight!'
         }
-    this.handleButtonChange = this.handleButtonChange.bind(this)
+        this.handleButtonText = this.handleButtonText.bind(this)
+
     }
 
-
-    //method to change buttonText 
-    handleButtonChange(){
-
+    handleButtonText(){
         this.setState({
             buttonText: 'Oh Snap!'
         })
-    } 
+    }
+
+
+
 
 
     render(){
         return(
             <div>
-                <button onClick={() => {this.handleButtonChange()}}>
+                <button
+                 onClick={() =>{this.props.buttonChangeFn();this.handleButtonText()}}
+                // onClick={()=>{this.handleButtonText()}}
+                >
                 {this.state.buttonText}
                 </button>
             </div>

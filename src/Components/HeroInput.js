@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Decimate from '../Components/Decimate'
 import axios from 'axios';
 
 //This should be the input area and the button 
@@ -12,6 +13,8 @@ class HeroInput extends Component {
         }
 
     this.handleUpdateAvengers = this.handleUpdateAvengers.bind(this)
+
+    this.handleButtonChange = this.handleButtonChange.bind(this)
     }
 
     handleUpdateAvengers(){
@@ -36,6 +39,17 @@ class HeroInput extends Component {
         })
     }
 
+        //need to rename this since I moved it from another component
+        handleButtonChange(){
+            axios.delete('http://localhost:4000/api/avengers')
+            .then((response => {
+               console.log(response.data)
+               this.setState({
+                   avengers: response.data
+               }) 
+            }))
+        } 
+
     
     render(){
         let displayHeroes = this.state.avengers.map((val,ind) => {
@@ -52,10 +66,13 @@ class HeroInput extends Component {
                     value={this.state.inputText}
                 />
 
-                <button onClick={(e)=> this.handleUpdateAvengers()}>
+                <button onClick={(e)=> this.handleUpdateAvengers()} 
+                >
                      Suit up!
                 </button>
                 {displayHeroes}
+                <Decimate buttonChangeFn={
+                    this.handleButtonChange} />
             </div>
         )
     }

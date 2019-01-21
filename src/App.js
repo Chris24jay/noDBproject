@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Components/Header'
 import Assemble from './Components/Assemble'
-import Decimate from './Components/Decimate'
+// import Decimate from './Components/Decimate'
 import HeroInput from './Components/HeroInput'
 
 import './App.css';
@@ -28,7 +28,7 @@ class App extends Component {
         <main>
           <Header /> 
           <HeroInput />         
-          <Decimate /> 
+          {/* <Decimate />  */}
         </main>   
       
    

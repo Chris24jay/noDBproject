@@ -30,8 +30,6 @@ class Assemble extends Component {
 
 
     render(){
-
-        console.log("Hero roster in render:", this.state.heroRoster)
         return(
             <div>
                 <img src={Logo} alt="Logo" /><br/>
